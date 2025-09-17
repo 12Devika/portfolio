@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Devika G B — Portfolio</title>
+  <meta name="description" content="Devika G B — Student at SJCIT (CSE, AIML). Frontend developer with interest in AI/ML and web technologies." />
+  <meta name="author" content="Devika G B" />
+  <meta name="theme-color" content="#0f1724" />
+
+  <!-- Fonts & GSAP (optional animation) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px; --text: #eaf4ff; --success:#22c55e;
+    }
+    [data-theme="light"]{ --bg:#f7f9fb; --card:#ffffff; --muted:#55606a; --accent:#6b21a8; --text:#0b1220; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:linear-gradient(180deg,var(--bg),#051025);color:var(--text);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--maxw),94%);margin:0 auto;padding:2rem 0}
+
+    /* Header */
+    header{position:sticky;top:0;background:linear-gradient(180deg, rgba(15,23,36,0.6), rgba(15,23,36,0.2));border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);z-index:40}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,var(--accent),#5ce1e6)}
+    nav ul{display:flex;gap:.75rem;list-style:none;margin:0;padding:0}
+    nav a{padding:.45rem .6rem;border-radius:8px;color:var(--muted);font-weight:600}
+    .controls{display:flex;gap:.6rem;align-items:center}
+
+    /* Skip link */
+    .skip-link{position:absolute;left:-999px}
+    .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;color:#000;padding:.5rem 1rem;border-radius:6px;z-index:9999}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:1.6rem;align-items:start;padding:2.6rem 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1.2rem;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h1{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 .25rem}
+    .lead{color:var(--muted);margin:0 0 1rem}
+
+    .cta{display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,var(--accent),#5ce1e6);color:#031025;padding:.5rem .8rem;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.alt{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* Sections */
+    section{margin-top:1.2rem}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .skills .skill{padding:.9rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .project{padding:1rem;border-radius:12px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:transform .18s,box-shadow .18s}
+
+    /* skill bars */
+    .skill .bar{height:10px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;margin-top:.6rem}
+    .skill .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#5ce1e6);border-radius:999px}
+
+    /* Contact */
+    form{display:grid;gap:.6rem}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:.7rem;border-radius:8px;color:var(--text)}
+    textarea{min-height:120px}
+    .muted{color:var(--muted);font-size:.92rem}
+
+    footer{padding:2rem 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .projects{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .projects{grid-template-columns:1fr} nav ul{display:none} .container{padding:1rem} }
+
+    @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important} }
+
+    /* Cursor popup */
+    .cursor-popup {
+      position: fixed; pointer-events: none; left:0; top:0;
+      transform: translate(-50%,-140%) scale(0.98);
+      background: linear-gradient(135deg, rgba(124,92,255,0.98), rgba(92,225,230,0.98));
+      color: #021226; padding:.45rem .65rem; border-radius:10px;
+      font-weight:700;font-size:.85rem;box-shadow:0 10px 30px rgba(2,6,23,0.35);
+      z-index:9999;white-space:nowrap;opacity:0;transform-origin:center bottom;
+      transition: opacity .18s ease, transform .18s cubic-bezier(.2,.9,.3,1);
+      backdrop-filter: blur(6px);
+    }
+    .cursor-popup .sub { display:block;font-size:.7rem;font-weight:600;margin-top:.18rem;opacity:.95; }
+    .cursor-popup.show { opacity:1; transform:translate(-50%,-160%) scale(1); }
+    .cursor-popup--left { transform-origin:left bottom; }
+    .cursor-popup--right { transform-origin:right bottom; }
+    @media (prefers-reduced-motion: reduce){ .cursor-popup { transition:none; transform:translate(-50%,-160%) scale(1); } }
+    @media (hover:none) and (pointer:coarse){ .cursor-popup { display:none !important; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <div class="brand"><div class="dot" aria-hidden="true"></div><div>DevPortfolio</div></div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about" data-popup="About Me section">About</a></li>
+          <li><a href="#skills" data-popup="My technical skills">Skills</a></li>
+          <li><a href="#projects" data-popup="Check my projects">Projects</a></li>
+          <li><a href="#contact" data-popup="Contact me">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="controls">
+        <button id="themeToggle" class="btn.alt" aria-pressed="false" title="Toggle theme">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="hero" id="home" aria-label="Introduction">
+      <div>
+        <div class="card" id="introCard">
+          <h1>Hi — I'm <span style="color:var(--accent)">Devika G B</span></h1>
+          <p class="lead">Student — SJCIT, CSE (AIML). Passionate about building accessible and performant web apps with modern front-end tools and a growing interest in AI/ML.</p>
+
+          <div class="cta" style="margin-top:.6rem">
+            <button class="btn" id="viewProjects" data-popup="Scroll to see my projects">View Projects</button>
+            <a class="btn.alt" href="#contact" data-popup="Get in touch with me">Hire me</a>
+            <a class="btn.alt" href="mailto:hello@example.com" data-popup="Send me an email">hello@example.com</a>
+          </div>
+        </div>
+
+        <section id="about" style="margin-top:1rem">
+          <div class="card">
+            <h2>About</h2>
+            <p class="muted">I am currently pursuing a B.E. in Computer Science (AIML) at SJC Institute of Technology. I enjoy building user-friendly web interfaces and learning about machine learning. Current CGPA: <strong>8.921</strong>. I am eager to contribute to front-end and AI-focused projects.</p>
+          </div>
+        </section>
+
+        <section id="skills" style="margin-top:1rem">
+          <h2>Skills</h2>
+          <div class="grid-3 skills" aria-label="Technical skills">
+            <div class="skill card" data-popup="Java — OOP & DS" data-popup-sub="Proficiency: 82%">
+              <h4>Java</h4>
+              <div class="muted">Object oriented programming, data structures</div>
+              <div class="bar" data-fill="82"><i></i></div>
+            </div>
+
+            <div class="skill card" data-popup="HTML & CSS — responsive layouts" data-popup-sub="Proficiency: 92%">
+              <h4>HTML & CSS</h4>
+              <div class="muted">Semantic markup, responsive layouts</div>
+              <div class="bar" data-fill="92"><i></i></div>
+            </div>
+
+            <div class="skill card" data-popup="Angular.js — SPA & components" data-popup-sub="Proficiency: 74%">
+              <h4>Angular.js</h4>
+              <div class="muted">Single-page apps, components</div>
+              <div class="bar" data-fill="74"><i></i></div>
+            </div>
+
+            <div class="skill card" data-popup="DBMS — SQL & relational" data-popup-sub="Proficiency: 78%">
+              <h4>DBMS</h4>
+              <div class="muted">Relational models & SQL</div>
+              <div class="bar" data-fill="78"><i></i></div>
+            </div>
+
+            <div class="skill card" data-popup="Git — version control" data-popup-sub="Proficiency: 84%">
+              <h4>Git</h4>
+              <div class="muted">Version control & collaboration</div>
+              <div class="bar" data-fill="84"><i></i></div>
+            </div>
+
+            <div class="skill card" data-popup="Python & MongoDB — scripting & NoSQL" data-popup-sub="Proficiency: 76%">
+              <h4>Python & MongoDB</h4>
+              <div class="muted">Scripting, basic ML, NoSQL</div>
+              <div class="bar" data-fill="76"><i></i></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="card" aria-label="Profile card">
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(180deg,#18314a,#0b2233);display:flex;align-items:center;justify-content:center;font-weight:700">DG</div>
+          <div>
+            <div style="font-weight:700">Devika G B</div>
+            <div class="muted">CSE (AIML) • SJCIT</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <div class="muted">Quick links</div>
+          <div style="display:flex;gap:.6rem;margin-top:.5rem">
+            <a class="btn.alt" href="#projects" data-popup="Go to Projects">Projects</a>
+            <a class="btn.alt" href="#contact" data-popup="Go to Contact section">Contact</a>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <div class="muted">Contact</div>
+          <div style="margin-top:.4rem"><button id="copyEmail" class="btn.alt" aria-label="Copy email">hello@example.com</button></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" style="margin-top:2rem">
+      <h2>Projects</h2>
+      <p class="muted">(I'll display projects here. You can edit these entries later.)</p>
+      <div class="projects" role="list">
+        <article class="project card" role="listitem" tabindex="0" aria-label="Project placeholder" data-popup="Project A — Coming soon" data-popup-sub="Tech: HTML, CSS, JS">
+          <div>
+            <h3>Project A — Coming soon</h3>
+            <p class="muted">Short description will go here.</p>
+          </div>
+        </article>
+
+        <article class="project card" role="listitem" tabindex="0" aria-label="Project placeholder" data-popup="Project B — Coming soon" data-popup-sub="Tech: React, Node">
+          <div>
+            <h3>Project B — Coming soon</h3>
+            <p class="muted">Short description will go here.</p>
+          </div>
+        </article>
+
+        <article class="project card" role="listitem" tabindex="0" aria-label="Project placeholder" data-popup="Project C — Coming soon" data-popup-sub="Tech: Python, ML">
+          <div>
+            <h3>Project C — Coming soon</h3>
+            <p class="muted">Short description will go here.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:2rem">
+      <h2>Contact</h2>
+      <div class="card" style="margin-top:.6rem">
+        <form id="contactForm" aria-label="Contact form">
+          <label class="muted">Name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+          <label class="muted">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+          <label class="muted">Message</label>
+          <textarea id="message" placeholder="How can I help?"></textarea>
+          <div style="display:flex;gap:.6rem;margin-top:.6rem;align-items:center">
+            <button class="btn" type="submit">Send</button>
+            <div id="formStatus" class="muted" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Made with ♥ — Devika G B • <span class="muted">SJCIT, CSE (AIML)</span></div>
+  </footer>
+
+  <script>
+    // Smooth anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href.length > 1) { e.preventDefault(); document.querySelector(href).scrollIntoView({ behavior:'smooth', block:'start' }); }
+    }));
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(theme){ document.documentElement.dataset.theme = theme; localStorage.setItem('theme', theme); themeToggle.setAttribute('aria-pressed', String(theme === 'light')); }
+    themeToggle.addEventListener('click', ()=> applyTheme(localStorage.getItem('theme') === 'light' ? 'dark' : 'light'));
+    applyTheme(localStorage.getItem('theme') || 'dark');
+
+    // Skill bar fill animation
+    gsap.utils.toArray('.skill .bar i').forEach((el,index)=>{
+      const val = el.parentNode.dataset.fill || 80;
+      gsap.fromTo(el,{width:'0%'},{width:val+'%',duration:1.2,delay:index*0.15,ease:'power2.out'});
+    });
+
+    // Cursor popup code
+    (function(){
+      const tip=document.createElement('div');tip.className='cursor-popup';tip.setAttribute('role','tooltip');tip.setAttribute('aria-hidden','true');document.body.appendChild(tip);
+      let activeEl=null;
+      function showTooltip(el){
+        const text=el.dataset.popup||el.getAttribute('aria-label')||el.title||'';
+        const sub=el.dataset.popupSub||'';
+        if(!text)return;
+        tip.innerHTML=`<span class="main">${text}</span>${sub? `<span class="sub">${sub}</span>`:''}`;
+        tip.classList.add('show');tip.setAttribute('aria-hidden','false');activeEl=el;
+      }
+      function hideTooltip(){tip.classList.remove('show','cursor-popup--left','cursor-popup--right');tip.setAttribute('aria-hidden','true');activeEl=null;}
+      function positionTooltip(x,y){
+        if(!activeEl)return;const pad=12;const rect=tip.getBoundingClientRect();const vw=window.innerWidth;
+        let left=x;
+        if(x+rect.width/2+pad>vw){left=vw-rect.width/2-pad;tip.classList.add('cursor-popup--right');tip.classList.remove('cursor-popup--left');}
+        else if(x-rect.width/2-pad<0){left=rect.width/2+pad;tip.classList.add('cursor-popup--left');tip.classList.remove('cursor-popup--right');}
+        else tip.classList.remove('cursor-popup--left','cursor-popup--right');
+        tip.style.left=`${left}px`;tip.style.top=`${y}px`;
+      }
+      document.addEventListener('mousemove', e=>{if(activeEl) positionTooltip(e.clientX,e.clientY-18);},{passive:true});
+      document.addEventListener('focusin', ev=>{const el=ev.target;if(!el||!el.dataset||!el.dataset.popup)return;showTooltip(el);const r=el.getBoundingClientRect();positionTooltip(r.left+r.width/2,r.top-8);});
+      document.addEventListener('focusout', ev=>{if(ev.target&&ev.target.dataset&&ev.target.dataset.popup) hideTooltip();});
+      document.addEventListener('pointerover', e=>{const el=e.target.closest('[data-popup]');if(!el)return;showTooltip(el);positionTooltip(e.clientX,e.clientY-18);});
+      document.addEventListener('pointerout', e=>{if(!activeEl) return;const related=e.relatedTarget;if(related&&activeEl.contains(related))return;hideTooltip();});
+      window.addEventListener('scroll', hideTooltip,{passive:true});window.addEventListener('resize',hideTooltip);
+      document.addEventListener('keydown', e=>{if(e.key==='Escape') hideTooltip();});
+    })();
+
+    // Smooth scroll to projects button
+    document.getElementById('viewProjects').addEventListener('click',()=>{
+      document.querySelector('#projects').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
