@@ -154,12 +154,12 @@
         <div class="cta">
           <button class="btn" id="viewProjects" data-popup="View my projects">View Projects</button>
           <a class="btn.alt" href="#contact" data-popup="Hire me">Hire me</a>
-          <a class="btn.alt" href="mailto:hello@example.com" data-popup="Email me">hello@example.com</a>
+          <a class="btn.alt" href="mailto:devikagb1293@gmail.com" data-popup="Email me">devikagb1293@gmail.com</a>
         </div>
 
         <div style="margin-top:1.2rem;display:flex;gap:.8rem;align-items:center">
           <div class="muted">CGPA</div>
-          <div style="font-weight:800;font-size:1.1rem">8.921</div>
+          <div style="font-weight:800;font-size:1.1rem">8.91</div>
         </div>
       </div>
 
@@ -169,7 +169,7 @@
             <div class="avatar" aria-hidden="true">DG</div>
             <div>
               <div style="font-weight:700">Devika G B</div>
-              <div class="muted">Frontend Developer • CSE (AIML)</div>
+              <div class="muted">Frontend Developer • CSE(AIML)</div>
             </div>
           </div>
 
@@ -236,7 +236,7 @@
   <!-- PROJECTS -->
   <section id="projects" class="container">
     <h2>Projects</h2>
-    <p class="muted">(Replace placeholders with actual project details and screenshots.)</p>
+    <p class="muted">(Minor and Major Projects)</p>
     <div class="grid-3">
       <article class="project card" tabindex="0" data-popup="Interactive Portfolio — this site" data-popup-sub="HTML • CSS • JS • GSAP">
         <div>
@@ -246,21 +246,31 @@
         <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
       </article>
 
-      <article class="project card" tabindex="0" data-popup="Task Manager — Kanban app" data-popup-sub="React • LocalStorage">
+      <article class="project card" tabindex="0" data-popup="Online Auction" data-popup-sub="DBMS • LocalStorage">
         <div>
-          <h3>Task Manager</h3>
-          <p class="muted">Kanban board with drag & drop and persistence.</p>
+          <h3>online Auction</h3>
+          <p class="muted"> Web application platform used to detail the design, functionalities, etc.., of the product..</p>
         </div>
-        <div class="tags"><span class="tag">React</span><span class="tag">JS</span></div>
+        <div class="tags"><span class="tag">DBMS</span><span class="tag">My SQL</span></div>
       </article>
 
-      <article class="project card" tabindex="0" data-popup="E-commerce UI — design system" data-popup-sub="Design • React">
+      <article class="project card" tabindex="0" data-popup="Placement Prediction" data-popup-sub="Full Stack development">
         <div>
-          <h3>E-commerce UI</h3>
-          <p class="muted">Design-first storefront with checkout flows.</p>
+          <h3>Placement Prediction</h3>
+          <p class="muted"> Web application used to predict placement with the given CGPA</p>
         </div>
-        <div class="tags"><span class="tag">Design</span><span class="tag">React</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
       </article>
+
+	<article class="project card" tabindex="0" data-popup="Life Line Navigator" data-popup-sub="IOT & Python">
+        <div>
+          <h3>Life Line Navigator</h3>
+          <p class="muted"> Integrated with ambulance siren Detection, overrides traffic lights to green, location of the hospital is send to 
+the driver through Blynk IoT platform, and resumes normal traffic signal</p>
+        </div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">IOT</span></div>
+      </article>
+
     </div>
   </section>
 
@@ -274,14 +284,14 @@
         <p class="muted">Download a printable copy of my resume or preview it inline.</p>
         <div class="resume-actions" style="margin-top:1rem">
           <!-- Replace 'resume.pdf' with your actual resume filename -->
-          <a class="resume-download" href="resume.pdf" download aria-label="Download resume">⬇️ Download Resume (PDF)</a>
+          <a class="resume-download" href="devikagb02cv.pdf" download aria-label="Download resume">⬇️ Download Resume (PDF)</a>
           <button id="previewResume" class="btn.alt" style="padding:.45rem .6rem">Preview</button>
         </div>
 
         <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:1rem 0">
 
         <h4>Education</h4>
-        <p class="muted">B.E. Computer Science (AIML) — SJC Institute of Technology<br>CGPA: 8.921</p>
+        <p class="muted">B.E. Computer Science (AIML) — SJC Institute of Technology<br>CGPA:8.91</p>
 
         <h4 style="margin-top:.6rem">Summary</h4>
         <p class="muted">Frontend developer interested in accessible UI, animations, and applied AI/ML projects.</p>
@@ -314,7 +324,7 @@
   </section>
 
   <footer style="padding:2rem 0;text-align:center;color:var(--muted)">
-    Made with ♥ — Devika G B • SJCIT • CSE (AIML)
+    Made with ♥ — Devika G B • SJCIT • CSE(AIML)
   </footer>
 
   <!-- Cursor popup element -->
@@ -418,7 +428,7 @@
     document.getElementById('previewResume').addEventListener('click', () => {
       const container = document.getElementById('resumePreviewContainer');
       // If resume.pdf exists in repo root, show it inline
-      const pdfUrl = 'resume.pdf';
+      const pdfUrl = 'devikagb02cv.pdf';
       // Replace preview area with iframe
       container.innerHTML = `<iframe src="${pdfUrl}" style="width:100%;height:100%;border:0"></iframe>`;
     });
